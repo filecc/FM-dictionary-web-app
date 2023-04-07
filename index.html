@@ -14,24 +14,53 @@
   <header class="container py-3 px-4 mx-auto">
     <nav class="flex justify-between items-center">
       <img src="./assets/images/logo.svg" alt="">
-      <select name="" id="">
-        <option value="">Select</option>
-      </select>
-      <div>
-        <!-- dark mode toggle -->
-        <div class="dns-container shadow-sm">
-          <span class="dns-button">
-            <span class="dns-particle one"></span>
-            <span class="dns-particle second"></span>
-            <span class="dns-particle third"></span>
-          </span>
-        </div>
+      <div class="flex justify-between items-center w-6/12">
+        <select name="" id="">
+          <option value="">Select</option>
+        </select>
+        <div>
+          <!-- dark mode toggle -->
+          <div class="dns-container shadow-sm">
+            <span class="dns-button">
+              <span class="dns-particle one"></span>
+              <span class="dns-particle second"></span>
+              <span class="dns-particle third"></span>
+            </span>
+          </div>
+      </div>
+      
+
       </div>
     </nav>
   </header>
   <main class="container p-4 mx-auto">
     <input class="mt-2 w-full bg-zinc-100 rounded-xl p-2" type="text">
-    <div id="result"></div>
+   
+    <div id="mainApp" class="hidden">
+      <div class="mt-4 flex justify-between items-center">
+        <div class="grow">
+          <h2 id="title" class="text-[32px] font-bold">keyboard</h2>
+          <p id="phonetics" class="text-fg-pink">/hʌʊs/</p>
+        </div>
+        <div class="w-2/12">
+          <img id="playAudio" class="w-full" src="./assets/images/icon-play.svg" alt="">
+        </div>
+      </div>
+      <div id="result" class="mt-2">
+
+       <!--  <div>
+          <p class="italic font-bold">noun</p>
+          <div class="bg-zinc-200 ms-4 separator"></div>
+        </div> -->
+       
+       
+      </div>
+      
+    </div>
+    
+
+    
+
   </main>
 
 

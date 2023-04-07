@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        
+        'fg-pink': '#A445ED',
       },
       fontFamily: {
         

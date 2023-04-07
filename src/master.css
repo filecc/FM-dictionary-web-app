@@ -27,6 +27,11 @@ input{
     background-position: 95%;
 }
 
+.separator{
+    height: 1px;
+    width: 100%;
+}
+
 /* DARK MODE */
 
 .dns-container {

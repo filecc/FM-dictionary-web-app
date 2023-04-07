@@ -64,6 +64,12 @@ export function addAttributes(element, props) {
   });
 }
 
+// function to get a random letter
+export function getRandomLetter() {
+  const letters =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  return letters[getRandomInt(0,25)];
+}
+
 // function to get a random number, extreme included
 export function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
