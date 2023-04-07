@@ -16,15 +16,43 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
       const jsonData = await response.json();
 
       if (response.ok) {
+        resultDIV.textContent = "";
         noresult.classList.add('hidden');
         const resultWord = jsonData[0];
         mainApp.classList.remove("hidden");
         title.textContent = resultWord.word;
         phonetics.textContent = resultWord.phonetics[0]?.text;
+        let audioAttribute;
 
+        resultWord.phonetics.forEach(element => {
+          if (element.audio != ''){
+            audioAttribute = element.audio;
+          }
+            
+        });
+        
+        if (audioAttribute) {
+          audio.setAttribute("src", audioAttribute);
+          const buttonPlay = document.querySelector(".audio");
+          buttonPlay.addEventListener("click", function () {
+            buttonPlay.setAttribute("src", "./assets/images/icon-pause.svg");
+            audio.play();
+            audio.addEventListener("ended", () => {
+              buttonPlay.setAttribute("src", "./assets/images/icon-play.svg");
+            });
+          });
+        } else {
+          const WIKI_URL = `https://upload.wikimedia.org/wikipedia/commons/f/f5/En-us-${resultWord.word}.ogg`;
+          const audioPrecence = await fetch(WIKI_URL);
+          if (audioPrecence.ok){
+            audio.setAttribute('src', WIKI_URL)
+          } else {
+            cconsole.log('No audio :(');
+          }
+         
+        }
         
         const words_meanings = resultWord.meanings;
-        resultDIV.textContent = "";
         
         words_meanings.forEach((el) => {
           const div = createChild({
@@ -103,9 +131,11 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
       } else {
         mainApp.classList.add("hidden");
         noresult.classList.remove('hidden');
+        audio.setAttribute('src', '');
       }
     } catch (error) {
       noresult.classList.add('hidden');
+      audio.setAttribute('src', '');
 
     }
   }
@@ -115,6 +145,7 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
       searchWord(this.value);
     } else {
       mainApp.classList.add("hidden");
+      document.getElementById('playAudio').setAttribute('src', '');
     }
   });
 
