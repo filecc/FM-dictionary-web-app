@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link href="./dist/output.css" rel="stylesheet" />
+  <link href="./src/master.css" rel="stylesheet">
+</head>
+
+<body class="bg-white">
+  <header class="container py-3 px-4 mx-auto">
+    <nav class="flex justify-between items-center">
+      <img src="./assets/images/logo.svg" alt="">
+      <select name="" id="">
+        <option value="">Select</option>
+      </select>
+      <div>
+        <!-- dark mode toggle -->
+        <div class="dns-container shadow-sm">
+          <span class="dns-button">
+            <span class="dns-particle one"></span>
+            <span class="dns-particle second"></span>
+            <span class="dns-particle third"></span>
+          </span>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container p-4 mx-auto">
+    <input class="mt-2 w-full bg-zinc-100 rounded-xl p-2" type="text">
+    <div id="result"></div>
+  </main>
+
+
+  <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>
