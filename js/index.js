@@ -10,7 +10,25 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
     const audio = document.getElementById("playAudio");
     const resultDIV = document.getElementById("result");
     const noresult = document.querySelector('.noresult');
-
+    const buttonPlay = document.querySelector(".audio");
+    const handlePlay = function () {
+      if (audio.getAttribute('src') != ''){
+        buttonPlay.setAttribute("src", "./assets/images/icon-pause.svg");
+        audio.play();
+        audio.addEventListener("ended", () => {
+          buttonPlay.setAttribute("src", "./assets/images/icon-play.svg");
+        });
+      }
+      
+    }
+    function deactivateAudio() {
+      buttonPlay.classList.add('saturate-0');
+      buttonPlay.removeEventListener('click', handlePlay);
+      audio.setAttribute('src', '');
+    }
+    function activateAudio(){
+      buttonPlay.classList.remove('saturate-0');
+    }
     try {
       const response = await fetch(URL + word);
       const jsonData = await response.json();
@@ -23,36 +41,38 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
         title.textContent = resultWord.word;
         phonetics.textContent = resultWord.phonetics[0]?.text;
         let audioAttribute;
-
         resultWord.phonetics.forEach(element => {
           if (element.audio != ''){
             audioAttribute = element.audio;
           }
-            
         });
         
         if (audioAttribute) {
           audio.setAttribute("src", audioAttribute);
-          const buttonPlay = document.querySelector(".audio");
-          buttonPlay.addEventListener("click", function () {
-            buttonPlay.setAttribute("src", "./assets/images/icon-pause.svg");
-            audio.play();
-            audio.addEventListener("ended", () => {
-              buttonPlay.setAttribute("src", "./assets/images/icon-play.svg");
-            });
-          });
+          buttonPlay.addEventListener("click", handlePlay);
+          activateAudio();
         } else {
-          const WIKI_URL = `https://upload.wikimedia.org/wikipedia/commons/f/f5/En-us-${resultWord.word}.ogg`;
-          const audioPrecence = await fetch(WIKI_URL);
-          if (audioPrecence.ok){
-            audio.setAttribute('src', WIKI_URL)
-          } else {
-            cconsole.log('No audio :(');
+          
+          try {
+            console.log(resultWord.word.toLowerCase());
+            const WIKI_URL = `https://upload.wikimedia.org/wikipedia/commons/f/f5/En-us-${resultWord.word.toLowerCase()}.ogg`;
+            console.log(WIKI_URL);
+            const audioPrecence = await fetch(WIKI_URL);
+            if (audioPrecence.ok) {
+              activateAudio();
+              audio.setAttribute("src", WIKI_URL);
+            } else {
+              deactivateAudio();
+            }
+          } catch (error) {
+            deactivateAudio();
           }
+         
          
         }
         
         const words_meanings = resultWord.meanings;
+        console.log(words_meanings)
         
         words_meanings.forEach((el) => {
           const div = createChild({
@@ -131,21 +151,23 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
       } else {
         mainApp.classList.add("hidden");
         noresult.classList.remove('hidden');
-        audio.setAttribute('src', '');
+        deactivateAudio();
       }
     } catch (error) {
       noresult.classList.add('hidden');
-      audio.setAttribute('src', '');
-
+      deactivateAudio();
     }
   }
 
-  input.addEventListener("input", function () {
-    if (this.value.trim().length != 0) {
-      searchWord(this.value);
+  input.addEventListener("input", function (e) {
+    if (e.key === 'Enter' || this.value != '') {
+      if (this.value.trim().length != 0){
+        searchWord(this.value);
+      }
+      
     } else {
       mainApp.classList.add("hidden");
-      document.getElementById('playAudio').setAttribute('src', '');
+      deactivateAudio();
     }
   });
 
