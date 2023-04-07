@@ -2,6 +2,7 @@
 
 module.exports = {
   darkMode: 'class',
+  fontFamily: 'class',
   content: [
     './index.html',
     './js/index.js',

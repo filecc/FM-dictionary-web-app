@@ -141,4 +141,28 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
   });
 
   /* /darkMODE */
+
+  /* FONT FAIMILY */
+
+  document.querySelector('select').addEventListener('change', function () {
+    const body = document.querySelector('body');
+    switch (this.selectedOptions[0].value) {
+      case 'serif':
+        body.classList.add('serif');
+        body.classList.remove('sans');
+        body.classList.remove('mono')
+        break;
+      case 'mono':
+        body.classList.remove('serif');
+        body.classList.remove('sans');
+        body.classList.add('mono');
+      break
+      default:
+        body.classList.remove('serif');
+        body.classList.add('sans');
+        body.classList.remove('mono');
+        break;
+    }
+  });
+
 })();

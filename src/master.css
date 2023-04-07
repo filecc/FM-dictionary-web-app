@@ -1,50 +1,81 @@
 :root {
     --app-height: 100%;
-     /* GENERAL */
-     --width: 3.5rem;
-     --shadow: 0px 5px 6px -2px rgba(0, 0, 0, 0.1);
-     --radiusContainer: calc((var(--width) * 25) / 100);
-     --radiusToggle: calc((var(--width) * 25) / 100);
-     --toggle: calc(var(--width) * 0.4);
-     --cubic: cubic-bezier(.57,.58,.93,.44);
-     /* THIS TOGGLE */
-     --dns-bg-container: #a4c5f4;
-     --dns-color: #fef296;
-     --dns-color-on: #f3f0d9;
-     --dns-bg-container-on: #182048;
-     --shadowWidth: calc(var(--width) * -0.1);
-     --shadow-on: inset var(--shadowWidth) 0 0 0 var(--dns-color-on);
-     
+    /* GENERAL */
+    --width: 3.5rem;
+    --shadow: 0px 5px 6px -2px rgba(0, 0, 0, 0.1);
+    --radiusContainer: calc((var(--width) * 25) / 100);
+    --radiusToggle: calc((var(--width) * 25) / 100);
+    --toggle: calc(var(--width) * 0.4);
+    --cubic: cubic-bezier(.57, .58, .93, .44);
+    /* THIS TOGGLE */
+    --dns-bg-container: #a4c5f4;
+    --dns-color: #fef296;
+    --dns-color-on: #f3f0d9;
+    --dns-bg-container-on: #182048;
+    --shadowWidth: calc(var(--width) * -0.1);
+    --shadow-on: inset var(--shadowWidth) 0 0 0 var(--dns-color-on);
+}
+
+.serif {
+    font-family: 'Lora', serif;
+}
+
+.sans {
+    font-family: 'Inter', sans-serif;
+}
+
+.mono {
+    font-family: 'Inconsolata', monospace;
 }
 
 /* 
 height: 100vh;
 height: var(--app-height);
  */
-input{
+input {
     background: url('../assets/images/icon-search.svg');
     background-repeat: no-repeat;
     background-position: 95%;
 }
 
-.separator{
+.separator {
     height: 1px;
     width: 100%;
 }
 
+.vertical-rule {
+    width: 1px;
+    height: 20px;
+    background-color: gray;
+}
+
 li::marker {
     color: #A445ED;
-  }
-input:focus, input:focus-visible{
-    border: 1px solid #A445ED !important;
-    outline: none;
 }
-li{
+
+input:focus,
+input:focus-visible {
+    outline: 1px solid #A445ED;
+}
+
+select {
+    appearance: none;
+    background: url('../assets/images/icon-arrow-down.svg');
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: 12%;
+    padding-right: 10%;
+}
+
+
+li {
     padding: .5rem .5rem;
 }
-li:last-child{
+
+li:last-child {
     padding-bottom: 0;
 }
+
 /* DARK MODE */
 
 .dns-container {
@@ -71,7 +102,8 @@ li:last-child{
     transition: all .3s linear;
     box-shadow: var(--shadow);
 }
-.dns-particle{
+
+.dns-particle {
     position: relative;
     display: block;
     width: calc(var(--width) / 3);
@@ -82,24 +114,25 @@ li:last-child{
 }
 
 
-.dns-particle.one{
+.dns-particle.one {
     top: 25%;
     left: 30%;
     box-shadow: var(--shadow);
 }
-.dns-particle.second{
+
+.dns-particle.second {
     top: 50%;
     left: 45%;
     box-shadow: var(--shadow);
 }
 
-.dns-particle.third{
+.dns-particle.third {
     width: 0;
     height: 0;
 }
 
 
-.dns-on .dns-particle{
+.dns-on .dns-particle {
     width: calc(var(--width) * 0.03);
     height: calc(var(--width) * 0.03);
     border-radius: 50%;
@@ -113,7 +146,8 @@ li:last-child{
     left: 20%;
     box-shadow: none;
 }
-.dns-on .dns-particle.second{
+
+.dns-on .dns-particle.second {
     width: calc(var(--width) * 0.02);
     height: calc(var(--width) * 0.02);
     border-radius: 50px;
@@ -121,7 +155,8 @@ li:last-child{
     left: 10%;
     box-shadow: none;
 }
-.dns-on .third{
+
+.dns-on .third {
     width: calc(var(--width) * 0.04);
     height: calc(var(--width) * 0.04);
     border-radius: 50px;
@@ -133,12 +168,11 @@ li:last-child{
 
 .dns-on {
     -webkit-transform: translate3d(125%, -50%, 0);
-   transform: translate3d(125%, -50%, 0);
-   background-color: transparent;
-   box-shadow: var(--shadow-on);
+    transform: translate3d(125%, -50%, 0);
+    background-color: transparent;
+    box-shadow: var(--shadow-on);
 }
-.dns-container-on{
+
+.dns-container-on {
     background-color: var(--dns-bg-container-on);
 }
-
-
