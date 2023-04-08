@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Title</title>
+  <title>Dictionary by filecc</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,18 +15,19 @@
   <link href="./src/master.css" rel="stylesheet">
 </head>
 
-<body class="bg-white dark:bg-[#050505] sans">
-  <header class="container py-3 px-4 mx-auto">
+<body class="bg-white dark:bg-[#050505] sans lg:max-w-[740px] lg:mx-auto lg:pt-10">
+  <header class="container py-3 px-6 mx-auto">
     <nav class="flex justify-between items-center">
-      <img src="./assets/images/logo.svg" alt="">
-      <div class="flex justify-between items-center w-6/12">
+      <a href="./index.html"> <img src="./assets/images/logo.svg" alt="logo"></a>
+
+      <div class="flex justify-end items-center w-6/12">
         <select
           class="text-gray-900 dark:bg-[#050505] text-sm rounded-lg block  py-2 dark:text-white outline-none me-1">
           <option value="sans" selected>Sans Serif</option>
           <option value="serif">Serif</option>
           <option value="mono">Mono</option>
         </select>
-        <div class="vertical-rule"> </div>
+        <div class="vertical-rule mx-6"> </div>
         <div>
           <!-- dark mode toggle -->
           <div class="dns-container shadow-sm">
@@ -37,34 +38,34 @@
             </span>
           </div>
         </div>
-
-
       </div>
     </nav>
   </header>
-  <main class="container p-4 mx-auto">
+  <main class="container p-6 mx-auto">
     <input class="mt-2 w-full bg-zinc-100 dark:bg-zinc-800 dark:text-white rounded-xl p-2" type="text"
       placeholder="Search for any word...">
-    <p class="text-center dark:text-white py-3 hidden noresult">No result.</p>
+
+    <p class="text-center dark:text-white py-3">
+      <span class="hidden noresult">No result</span>
+      <span>
+        <i class="fa-solid fa-circle-notch animate-spin hidden spinner"></i>
+      </span>
+    </p>
     <div id="mainApp" class="hidden">
       <div class="mt-4 flex justify-between items-center">
         <div class="grow">
-          <h2 id="title" class="text-[32px] font-bold dark:text-white"></h2>
-          <p id="phonetics" class="text-fg-pink"></p>
+          <h2 id="title" class="text-[32px] md:text-[64px] font-bold dark:text-white"></h2>
+          <p id="phonetics" class="text-fg-pink text-[18px] md:text-[24px]"></p>
         </div>
         <div class="w-2/12 max-w-[80px] min-w-[50px]">
-          <img class="w-full audio" src="./assets/images/icon-play.svg" alt="">
+          <img class="w-full audio filter" src="./assets/images/icon-play.svg" alt="">
           <audio id="playAudio" src=""></audio>
-
         </div>
       </div>
 
       <div id="result" class="mt-2"></div>
 
     </div>
-
-
-
 
   </main>
 

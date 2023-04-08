@@ -2,6 +2,7 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
 (() => {
   const mainApp = document.getElementById("mainApp");
   const input = document.querySelector("input");
+  const spinner = document.querySelector('.spinner');
 
   async function searchWord(word) {
     const URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
@@ -30,10 +31,12 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
       buttonPlay.classList.remove('saturate-0');
     }
     try {
+      spinner.classList.remove('hidden')
       const response = await fetch(URL + word);
       const jsonData = await response.json();
 
       if (response.ok) {
+        spinner.classList.add('hidden')
         resultDIV.textContent = "";
         noresult.classList.add('hidden');
         const resultWord = jsonData[0];
@@ -54,9 +57,9 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
         } else {
           
           try {
-            console.log(resultWord.word.toLowerCase());
+           
             const WIKI_URL = `https://upload.wikimedia.org/wikipedia/commons/f/f5/En-us-${resultWord.word.toLowerCase()}.ogg`;
-            console.log(WIKI_URL);
+           
             const audioPrecence = await fetch(WIKI_URL);
             if (audioPrecence.ok) {
               activateAudio();
@@ -81,7 +84,7 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
           });
           const speech = createChild({
             tag: "p",
-            classes: ["font-bold", "italic", 'dark:text-white'],
+            classes: ["font-bold", "italic", 'dark:text-white', 'md:text-[24px]'],
             text: el.partOfSpeech,
           });
           const separator = createChild({
@@ -91,7 +94,7 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
           div.append(speech, separator);  
             
           resultDIV.append(div);
-          resultDIV.appendChild(createChild({tag: 'h3', text: 'Meaning', classes: ['mt-4','mb-2', 'text-[#757575]']}))
+          resultDIV.appendChild(createChild({tag: 'h3', text: 'Meaning', classes: ['mt-4','mb-2', 'text-[#757575]', 'md:text-[20px]']}))
           
           const ulDiv = createChild({tag: 'div', classes: ['p-4']});
 
@@ -109,7 +112,7 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
             const li = createChild({
               tag: "li",
               text: item.definition,
-              classes: ['text-[#2D2D2D]', 'dark:text-white']
+              classes: ['text-[#2D2D2D]', 'dark:text-white', 'md:text-[18px]', 'md:leading-[24px]']
             });
 
             if (item.example){
@@ -122,10 +125,10 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
             const synoms = createChild({
               tag: "h3",
               text: "Synonyms",
-              classes: ["my-4", "text-[#757575]"],
+              classes: ["my-4", "text-[#757575]", 'md:text-[20px]'],
             });
             resultDIV.appendChild(synoms);
-            const synP = createChild({ tag: "p", classes:['text-fg-pink', 'font-bold', 'mb-2'] });
+            const synP = createChild({ tag: "p", classes:['text-fg-pink', 'font-bold', 'mb-2', 'md:text-[20px]'] });
 
             synP.append(el.synonyms.join(", "));
 
@@ -148,13 +151,16 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
         }))
         source.appendChild(link);
         resultDIV.appendChild(source);
+        spinner.classList.add('hidden');
       } else {
         mainApp.classList.add("hidden");
         noresult.classList.remove('hidden');
+        spinner.classList.add('hidden');
         deactivateAudio();
       }
     } catch (error) {
       noresult.classList.add('hidden');
+      spinner.classList.add('hidden');
       deactivateAudio();
     }
   }
@@ -167,6 +173,7 @@ import { createChild, getRandomInt, getRandomLetter } from "./utils.js";
       
     } else {
       mainApp.classList.add("hidden");
+      this.value = '';
       deactivateAudio();
     }
   });

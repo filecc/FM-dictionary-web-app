@@ -16,6 +16,7 @@
     --shadow-on: inset var(--shadowWidth) 0 0 0 var(--dns-color-on);
 }
 
+
 .serif {
     font-family: 'Lora', serif;
 }
@@ -45,6 +46,7 @@ input {
 
 .vertical-rule {
     width: 1px;
+    min-width: 1px;
     height: 20px;
     background-color: gray;
 }
