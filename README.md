@@ -17,12 +17,12 @@ This is a solution to the [Dictionary web app challenge on Frontend Mentor](http
 
 ### Screenshot
 
-![Desktop Light](./desktop.png)
-![Desktop Dark](./desktop-night.png)
-![Tablet Light](./tablet.png)
-![Tablet Dark](./tablet-night.png)
-![Mobile Light](./mobile.png)
-![Mobile Dark](./mobile-night.png)
+![Desktop Light](./screenshot/desktop.png)
+![Desktop Dark](./screenshot/desktop-night.png)
+![Tablet Light](./screenshot/tablet.png)
+![Tablet Dark](./screenshot/tablet-night.png)
+![Mobile Light](./screenshot/mobile.png)
+![Mobile Dark](./screenshot/mobile-night.png)
 
 ### Links
 
